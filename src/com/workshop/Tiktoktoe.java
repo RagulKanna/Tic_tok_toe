@@ -3,7 +3,8 @@ package com.workshop;
 import java.util.Scanner;
 
 public class Tiktoktoe {
-    public static char ip;
+    public static int box;
+    public static char ip,ipc;
     public static char[] b=new char[10];
     public static Scanner sc=new Scanner(System.in);
     public static void initializeboard(){
@@ -21,13 +22,22 @@ public class Tiktoktoe {
     public static void input() {
         System.out.println("\nEnter the 'X' or 'O' what you needed:");
         ip = sc.next().charAt(0);
-        if (ip == 'X' || ip == 'O' || ip == 'x' || ip == 'o') {
-            System.out.println("You chose " + ip+" \n");
-
-        } else {
+        if (ip == 'X' || ip == 'O' || ip == 'x' || ip == 'o')
+        System.out.println("your choice is allocated!!! \n");
+            else {
             System.out.println("You chose wrong one!!!");
             input();
         }
+        if(ip == 'x' )
+            ipc= 'o';
+        else if(ip == 'X')
+            ipc = 'O';
+        else if(ip == 'o' )
+            ipc= 'x';
+        else
+            ipc = 'X';
+        System.out.println("You chose " + ip+" \n");
+        System.out.println("Another player chose " + ipc+" \n");
     }
     public static void showboard()
     {
@@ -44,7 +54,12 @@ public class Tiktoktoe {
     public static void selectbox()
     {
         System.out.println("Select box you need 1 to 9:");
-        int box=sc.nextInt();
+        box=sc.nextInt();
+        checkbox();
+        showboard();
+    }
+
+    public static void checkbox(){
         if (box >9 || box <1 ) {
             System.out.println("you chose wrong box!!!");
             selectbox();
@@ -55,7 +70,6 @@ public class Tiktoktoe {
         }
         else
             b[box]=ip;
-        showboard();
     }
     public static void main(String[] args) {
         initializeboard();
